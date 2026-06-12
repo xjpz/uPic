@@ -7,5 +7,4 @@ framework module libminipng {
 
 module libminipng.Swift {
   header "libminipng-Swift.h"
-  requires objc
 }

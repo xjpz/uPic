@@ -61,7 +61,7 @@ class SmmsUploader: BaseUploader {
             case .success(let value):
                 let json = JSON(value)
                 let code = json["code"].intValue
-                if 0 == code {
+                if 200 == code {
                     // Success - S.EE API uses code: 0 for success
                     let data = json["data"]
                     let url = data["url"].stringValue
