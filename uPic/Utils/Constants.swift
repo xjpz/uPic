@@ -11,7 +11,7 @@ import Foundation
 
 struct Constants {
     
-    static let appGroupName = "group.svend.uPic"
+    static let appGroupName = "group.cc.xjpz.uPic"
     
     static let none = "None"
     

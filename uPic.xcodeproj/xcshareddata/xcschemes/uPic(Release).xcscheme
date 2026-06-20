@@ -74,5 +74,25 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScript"
+            ActionTitle = "Generate libminipng dSYM">
+            <ShellScriptActionContents>
+<![CDATA[#!/bin/bash
+# Generate dSYM for libminipng.framework if missing
+FRAMEWORK_NAME="libminipng"
+DSYM_DIR="${ARCHIVE_PATH}/dSYMs"
+FRAMEWORK_PATH="${ARCHIVE_PATH}/Products/Applications/${FULL_PRODUCT_NAME}/Contents/Frameworks/${FRAMEWORK_NAME}.framework"
+DSYM_PATH="${DSYM_DIR}/${FRAMEWORK_NAME}.framework.dSYM"
+
+if [ -d "$FRAMEWORK_PATH" ] && [ ! -d "$DSYM_PATH" ]; then
+    dsymutil "$FRAMEWORK_PATH/${FRAMEWORK_NAME}" -o "$DSYM_PATH" 2>/dev/null
+    echo "Generated dSYM for ${FRAMEWORK_NAME}"
+fi
+]]>
+            </ShellScriptActionContents>
+         </ExecutionAction>
+      </PostActions>
    </ArchiveAction>
 </Scheme>
